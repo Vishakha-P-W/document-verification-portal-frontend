@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router";
+import logo from "../../assets/logo.png";
 import {
   LayoutDashboard,
   FileUp,
@@ -52,16 +53,20 @@ export function Layout() {
       {/* SAP Shell Header */}
       <header
         className="flex items-center justify-between px-4 flex-shrink-0"
-        style={{ backgroundColor: "#003B62", height: "44px", minHeight: "44px" }}
+        style={{ backgroundColor: "#003B62", height: "56px", minHeight: "56px" }}
       >
         <div className="flex items-center gap-3">
-          <div
-            className="flex items-center justify-center rounded"
-            style={{ width: "30px", height: "30px", backgroundColor: "#0070F2" }}
-          >
-            <span className="text-white" style={{ fontSize: "14px", fontWeight: "700" }}>S</span>
+          <div className="flex items-center justify-center">
+            <img
+              src={logo}
+              alt="logo"
+              className="h-10 w-auto object-contain rounded-md"
+            />
           </div>
-          <span className="text-white" style={{ fontSize: "15px", fontWeight: "600", letterSpacing: "0.02em" }}>
+          <span
+            className="text-white leading-none"
+            style={{ fontSize: "15px", fontWeight: "600", letterSpacing: "0.02em" }}
+          >
             Document Verification Portal
           </span>
         </div>
@@ -206,8 +211,8 @@ export function Layout() {
 
           {/* Sidebar footer */}
           <div className="mt-auto px-4 py-3 border-t" style={{ borderColor: "#eeeeee" }}>
-            <div style={{ fontSize: "11px", color: "#8a8b8c" }}>DMS v2.4.1</div>
-            <div style={{ fontSize: "11px", color: "#8a8b8c" }}>© 2025 Enterprise Corp</div>
+            <div style={{ fontSize: "11px", color: "#8a8b8c" }}>DMS v1</div>
+            <div style={{ fontSize: "11px", color: "#8a8b8c" }}>© 2026 Midwest Limited</div>
           </div>
         </aside>
 

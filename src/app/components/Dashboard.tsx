@@ -43,7 +43,7 @@ export function Dashboard() {
   const [chatMinimized, setChatMinimized] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [messages, setMessages] = useState<{ from: "user" | "bot"; text: string }[]>([
-    { from: "bot", text: "Hello! I'm your DMS Assistant. How can I help you today?" },
+    { from: "bot", text: "Hello! I'm your DVP Assistant. How can I help you today?" },
   ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -183,7 +183,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* ── Floating DMS Assistant ────────────────────────────────────────── */}
+      {/* ── Floating DVP Assistant ────────────────────────────────────────── */}
 
       {/* Chat Panel — expands above the FAB */}
       {chatOpen && (
@@ -208,7 +208,7 @@ export function Dashboard() {
           >
             <div className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
             <MessageSquare size={13} color="#ffffff" />
-            <span style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff", flex: 1 }}>DMS Assistant</span>
+            <span style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff", flex: 1 }}>DVP Assistant</span>
             <button onClick={() => setChatMinimized(!chatMinimized)} className="hover:opacity-70">
               <Minus size={13} color="#ffffff" />
             </button>
@@ -306,7 +306,7 @@ export function Dashboard() {
           backgroundColor: "#0070F2",
           border: "none",
         }}
-        title="Open DMS Assistant"
+        title="Open DVP Assistant"
       >
         {chatOpen ? (
           <X size={20} color="#ffffff" />
