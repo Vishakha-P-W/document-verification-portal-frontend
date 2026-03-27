@@ -9,35 +9,35 @@ const INV_VH_ITEMS: ValueHelpItem[] = [
 ];
 
 // ── Linked PR data per Invoice ──────────────────────────────────────────────
-const LINKED_PR: Record<string, { prNumber: string; item: string; material: string; description: string; qty: number; unit: string; plant: string; vendor: string; reqDate: string; status: string }[]> = {
+const LINKED_PR: Record<string, { prNumber: string; docType: string; item: string; material: string; unit: string; qty: number; valuationPrice: number; delivDate: string; plant: string; storageLocation: string; purchaseGroup: string }[]> = {
   INV4001: [
-    { prNumber: "PR1001", item: "10", material: "MAT-001", description: "Steel Rod", qty: 100, unit: "EA", plant: "1000", vendor: "Vendor A", reqDate: "2025-02-15", status: "Closed" },
-    { prNumber: "PR1001", item: "20", material: "MAT-002", description: "Industrial Steel Plate", qty: 50, unit: "EA", plant: "1000", vendor: "Vendor A", reqDate: "2025-02-15", status: "Closed" },
+    { prNumber: "PR1001", docType: "NB", item: "10", material: "MAT-001", unit: "EA", qty: 100, valuationPrice: 4500, delivDate: "2025-02-15", plant: "1000", storageLocation: "SL01", purchaseGroup: "P01" },
+    { prNumber: "PR1001", docType: "NB", item: "20", material: "MAT-002", unit: "EA", qty: 50,  valuationPrice: 2800, delivDate: "2025-02-15", plant: "1000", storageLocation: "SL01", purchaseGroup: "P01" },
   ],
   INV4002: [
-    { prNumber: "PR1002", item: "10", material: "MAT-003", description: "Copper Wire 2.5mm", qty: 500, unit: "KG", plant: "2000", vendor: "Vendor B", reqDate: "2025-02-20", status: "In Process" },
+    { prNumber: "PR1002", docType: "NB", item: "10", material: "MAT-003", unit: "KG", qty: 500, valuationPrice: 62500, delivDate: "2025-02-20", plant: "2000", storageLocation: "SL02", purchaseGroup: "P02" },
   ],
 };
 
 // ── Linked PO data per Invoice ──────────────────────────────────────────────
-const LINKED_PO: Record<string, { poNumber: string; item: string; material: string; description: string; qty: number; unit: string; plant: string; vendor: string; netPrice: number; currency: string; delivDate: string; status: string }[]> = {
+const LINKED_PO: Record<string, { poNumber: string; docType: string; purchOrg: string; purchGroup: string; companyCode: string; vendor: string; item: string; material: string; qty: number; netPrice: number; delivDate: string; plant: string; storageLocation: string }[]> = {
   INV4001: [
-    { poNumber: "PO2001", item: "10", material: "MAT-001", description: "Steel Rod", qty: 100, unit: "EA", plant: "1000", vendor: "Vendor A", netPrice: 45000, currency: "INR", delivDate: "2025-03-10", status: "Open" },
-    { poNumber: "PO2001", item: "20", material: "MAT-002", description: "Industrial Steel Plate", qty: 50, unit: "EA", plant: "1000", vendor: "Vendor A", netPrice: 28000, currency: "INR", delivDate: "2025-03-10", status: "Open" },
+    { poNumber: "PO2001", docType: "NB", purchOrg: "1000", purchGroup: "P01", companyCode: "1000", vendor: "Vendor A", item: "10", material: "MAT-001", qty: 100, netPrice: 45000, delivDate: "2025-03-10", plant: "1000", storageLocation: "SL01" },
+    { poNumber: "PO2001", docType: "NB", purchOrg: "1000", purchGroup: "P01", companyCode: "1000", vendor: "Vendor A", item: "20", material: "MAT-002", qty: 50,  netPrice: 28000, delivDate: "2025-03-10", plant: "1000", storageLocation: "SL01" },
   ],
   INV4002: [
-    { poNumber: "PO2002", item: "10", material: "MAT-003", description: "Copper Wire 2.5mm", qty: 500, unit: "KG", plant: "2000", vendor: "Vendor B", netPrice: 62500, currency: "INR", delivDate: "2025-03-20", status: "Pending" },
+    { poNumber: "PO2002", docType: "NB", purchOrg: "2000", purchGroup: "P02", companyCode: "2000", vendor: "Vendor B", item: "10", material: "MAT-003", qty: 500, netPrice: 62500, delivDate: "2025-03-20", plant: "2000", storageLocation: "SL02" },
   ],
 };
 
 // ── Linked GRN data per Invoice ─────────────────────────────────────────────
-const LINKED_GRN: Record<string, { grnNumber: string; poNumber: string; item: string; material: string; description: string; receivedQty: number; orderedQty: number; unit: string; plant: string; vendor: string; postDate: string; status: string }[]> = {
+const LINKED_GRN: Record<string, { grnNumber: string; poNumber: string; docDate: string; postDate: string; item: string; material: string; unit: string; qty: number; plant: string; storageLocation: string; price: number }[]> = {
   INV4001: [
-    { grnNumber: "GR3001", poNumber: "PO2001", item: "10", material: "MAT-001", description: "Steel Rod", receivedQty: 100, orderedQty: 100, unit: "EA", plant: "1000", vendor: "Vendor A", postDate: "2025-03-05", status: "Received" },
-    { grnNumber: "GR3001", poNumber: "PO2001", item: "20", material: "MAT-002", description: "Industrial Steel Plate", receivedQty: 50, orderedQty: 50, unit: "EA", plant: "1000", vendor: "Vendor A", postDate: "2025-03-05", status: "Received" },
+    { grnNumber: "GR3001", poNumber: "PO2001", docDate: "2025-03-04", postDate: "2025-03-05", item: "10", material: "MAT-001", unit: "EA", qty: 100, plant: "1000", storageLocation: "SL01", price: 45000 },
+    { grnNumber: "GR3001", poNumber: "PO2001", docDate: "2025-03-04", postDate: "2025-03-05", item: "20", material: "MAT-002", unit: "EA", qty: 50,  plant: "1000", storageLocation: "SL01", price: 28000 },
   ],
   INV4002: [
-    { grnNumber: "GR3002", poNumber: "PO2002", item: "10", material: "MAT-003", description: "Copper Wire 2.5mm", receivedQty: 300, orderedQty: 500, unit: "KG", plant: "2000", vendor: "Vendor B", postDate: "2025-03-12", status: "Partial" },
+    { grnNumber: "GR3002", poNumber: "PO2002", docDate: "2025-03-11", postDate: "2025-03-12", item: "10", material: "MAT-003", unit: "KG", qty: 300, plant: "2000", storageLocation: "SL02", price: 37500 },
   ],
 };
 
@@ -233,23 +233,25 @@ export function InvoiceModule() {
             <table className="w-full" style={{ borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #d9d9d9" }}>
-                  <TH>PR Number</TH><TH>Item</TH><TH>Material</TH><TH>Description</TH>
-                  <TH>Quantity</TH><TH>Unit</TH><TH>Plant</TH><TH>Vendor</TH><TH>Req. Date</TH><TH>Status</TH>
+                  <TH>PR Number</TH><TH>Document Type</TH><TH>Item Number</TH><TH>Material</TH>
+                  <TH>Unit of Measure</TH><TH>Quantity</TH><TH>Valuation Price</TH><TH>Delivery Date</TH>
+                  <TH>Plant</TH><TH>Storage Location</TH><TH>Purchase Group</TH>
                 </tr>
               </thead>
               <tbody>
                 {prData.map((row, i) => (
                   <tr key={row.prNumber + row.item} style={{ borderBottom: "1px solid #eeeeee", backgroundColor: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
                     <TD blue>{row.prNumber}</TD>
-                    <TD>{row.item}</TD>
+                    <TD>{row.docType}</TD>
+                    <TD blue>{row.item}</TD>
                     <TD>{row.material}</TD>
-                    <TD>{row.description}</TD>
-                    <TD right>{row.qty}</TD>
                     <TD>{row.unit}</TD>
+                    <TD right>{row.qty}</TD>
+                    <TD right>{row.valuationPrice.toLocaleString()}</TD>
+                    <TD>{row.delivDate}</TD>
                     <TD>{row.plant}</TD>
-                    <TD>{row.vendor}</TD>
-                    <TD>{row.reqDate}</TD>
-                    <td style={{ padding: "5px 10px", borderRight: "1px solid #e5e5e5" }}><StatusBadge status={row.status} /></td>
+                    <TD>{row.storageLocation}</TD>
+                    <TD>{row.purchaseGroup}</TD>
                   </tr>
                 ))}
               </tbody>
@@ -267,26 +269,27 @@ export function InvoiceModule() {
             <table className="w-full" style={{ borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #d9d9d9" }}>
-                  <TH>PO Number</TH><TH>Item</TH><TH>Material</TH><TH>Description</TH>
-                  <TH>Qty</TH><TH>Unit</TH><TH>Plant</TH><TH>Vendor</TH>
-                  <TH>Net Price</TH><TH>Currency</TH><TH>Delivery Date</TH><TH>Status</TH>
+                  <TH>PO Number</TH><TH>Document Type</TH><TH>Purchase Organization</TH><TH>Purchase Group</TH>
+                  <TH>Company Code</TH><TH>Vendor</TH><TH>Item Number</TH><TH>Material</TH>
+                  <TH>Quantity</TH><TH>Net Price</TH><TH>Delivery Date</TH><TH>Plant</TH><TH>Storage Location</TH>
                 </tr>
               </thead>
               <tbody>
                 {poData.map((row, i) => (
                   <tr key={row.poNumber + row.item} style={{ borderBottom: "1px solid #eeeeee", backgroundColor: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
                     <TD blue>{row.poNumber}</TD>
-                    <TD>{row.item}</TD>
-                    <TD>{row.material}</TD>
-                    <TD>{row.description}</TD>
-                    <TD right>{row.qty}</TD>
-                    <TD>{row.unit}</TD>
-                    <TD>{row.plant}</TD>
+                    <TD>{row.docType}</TD>
+                    <TD>{row.purchOrg}</TD>
+                    <TD>{row.purchGroup}</TD>
+                    <TD>{row.companyCode}</TD>
                     <TD>{row.vendor}</TD>
+                    <TD blue>{row.item}</TD>
+                    <TD>{row.material}</TD>
+                    <TD right>{row.qty}</TD>
                     <TD right>{row.netPrice.toLocaleString()}</TD>
-                    <TD>{row.currency}</TD>
                     <TD>{row.delivDate}</TD>
-                    <td style={{ padding: "5px 10px", borderRight: "1px solid #e5e5e5" }}><StatusBadge status={row.status} /></td>
+                    <TD>{row.plant}</TD>
+                    <TD>{row.storageLocation}</TD>
                   </tr>
                 ))}
               </tbody>
@@ -304,9 +307,9 @@ export function InvoiceModule() {
             <table className="w-full" style={{ borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #d9d9d9" }}>
-                  <TH>GRN Number</TH><TH>PO Number</TH><TH>Item</TH><TH>Material</TH>
-                  <TH>Description</TH><TH>Received Qty</TH><TH>Ordered Qty</TH>
-                  <TH>Unit</TH><TH>Plant</TH><TH>Vendor</TH><TH>Posting Date</TH><TH>Status</TH>
+                  <TH>GRN Number</TH><TH>Purchase Order Number</TH><TH>Document Date</TH><TH>Posting Date</TH>
+                  <TH>Item</TH><TH>Material</TH><TH>Unit of Measure</TH><TH>Quantity</TH>
+                  <TH>Plant</TH><TH>Storage Location</TH><TH>Price</TH>
                 </tr>
               </thead>
               <tbody>
@@ -314,16 +317,15 @@ export function InvoiceModule() {
                   <tr key={row.grnNumber + row.item} style={{ borderBottom: "1px solid #eeeeee", backgroundColor: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
                     <TD blue>{row.grnNumber}</TD>
                     <TD blue>{row.poNumber}</TD>
+                    <TD>{row.docDate}</TD>
+                    <TD>{row.postDate}</TD>
                     <TD>{row.item}</TD>
                     <TD>{row.material}</TD>
-                    <TD>{row.description}</TD>
-                    <TD right>{row.receivedQty}</TD>
-                    <TD right>{row.orderedQty}</TD>
                     <TD>{row.unit}</TD>
+                    <TD right>{row.qty}</TD>
                     <TD>{row.plant}</TD>
-                    <TD>{row.vendor}</TD>
-                    <TD>{row.postDate}</TD>
-                    <td style={{ padding: "5px 10px", borderRight: "1px solid #e5e5e5" }}><StatusBadge status={row.status} /></td>
+                    <TD>{row.storageLocation}</TD>
+                    <TD right>{row.price.toLocaleString()}</TD>
                   </tr>
                 ))}
               </tbody>
@@ -340,11 +342,6 @@ export function InvoiceModule() {
                 <span style={{ fontSize: "11px", color: "#8a8b8c", marginLeft: "8px" }}>(Single document per Invoice)</span>
               </div>
               <div className="p-4 flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <label style={{ fontSize: "11px", fontWeight: "500", color: "#32363a", width: "120px" }}>Invoice Number *</label>
-                  <input type="text" value={uploadDocNumber} onChange={(e) => setUploadDocNumber(e.target.value)} placeholder="Enter Invoice Number"
-                    className="border px-2 py-1 outline-none" style={{ fontSize: "12px", borderColor: "#d9d9d9", width: "160px", color: "#32363a", borderRadius: "2px" }} />
-                </div>
                 <div
                   onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                   onDragLeave={() => setDragOver(false)}

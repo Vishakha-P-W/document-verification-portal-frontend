@@ -152,11 +152,6 @@ export function POModule() {
                 <span style={{ fontSize: "11px", color: "#8a8b8c", marginLeft: "8px" }}>(Single document per PO)</span>
               </div>
               <div className="p-4 flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <label style={{ fontSize: "11px", fontWeight: "500", color: "#32363a", width: "120px" }}>PO Number *</label>
-                  <input type="text" value={uploadDocNumber} onChange={(e) => setUploadDocNumber(e.target.value)} placeholder="Enter PO Number"
-                    className="border px-2 py-1 outline-none" style={{ fontSize: "12px", borderColor: "#d9d9d9", width: "160px", color: "#32363a", borderRadius: "2px" }} />
-                </div>
                 <div
                   onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                   onDragLeave={() => setDragOver(false)}

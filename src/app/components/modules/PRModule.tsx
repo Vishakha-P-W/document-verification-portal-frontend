@@ -207,18 +207,6 @@ export function PRModule() {
                 <span style={{ fontSize: "12px", fontWeight: "600", color: "#32363a" }}>Upload Document</span>
               </div>
               <div className="p-4 flex flex-col gap-3">
-                {/* Doc Number with VH */}
-                <div className="flex items-center gap-3">
-                  <label style={{ fontSize: "11px", fontWeight: "500", color: "#32363a", width: "120px" }}>Document Number *</label>
-                  <input
-                    type="text"
-                    value={uploadDocNumber}
-                    onChange={(e) => setUploadDocNumber(e.target.value)}
-                    placeholder="Enter PR Number"
-                    className="border px-2 py-1 outline-none"
-                    style={{ fontSize: "12px", borderColor: "#d9d9d9", width: "160px", color: "#32363a", borderRadius: "2px" }}
-                  />
-                </div>
 
                 {/* Drag & Drop */}
                 <div
