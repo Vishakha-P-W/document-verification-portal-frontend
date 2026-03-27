@@ -15,7 +15,7 @@ import {
 
 const NAV_ITEMS = [
   { label: "Dashboard", path: "/", icon: LayoutDashboard },
-  { label: "Document Uploads", path: "/documents", icon: FileUp },
+  { label: "Invoice Verification", path: "/documents", icon: FileUp },
   { label: "Reports", path: "/reports", icon: BarChart2 },
 ];
 

@@ -22,8 +22,8 @@ export function DocumentUploads() {
         style={{ backgroundColor: "#ffffff", borderColor: "#d9d9d9" }}
       >
         <div>
-          <div style={{ fontSize: "11px", color: "#8a8b8c" }}>Home &rsaquo; Document Uploads</div>
-          <h1 style={{ fontSize: "16px", fontWeight: "600", color: "#32363a", margin: 0 }}>Document Uploads</h1>
+          <div style={{ fontSize: "11px", color: "#8a8b8c" }}>Home &rsaquo; Invoice Verification</div>
+          <h1 style={{ fontSize: "16px", fontWeight: "600", color: "#32363a", margin: 0 }}>Invoice Verification</h1>
         </div>
       </div>
 
